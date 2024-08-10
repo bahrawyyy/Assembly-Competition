@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\Assembly_Competition.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\Assembly_Competition.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6140101: Last Updated: Sat Aug 10 17:44:42 2024
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6140101: Last Updated: Sat Aug 10 21:12:09 2024
 <BR><P>
 <H3>Maximum Stack Usage =          0 bytes + Unknown(Functions without stacksize, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -12,7 +12,11 @@ Call chain for Maximum Stack Depth:</H3>
 <H3>
 Functions with no stack information
 </H3><UL>
- <LI><a href="#[1]">myApplication</a>
+ <LI><a href="#[2]">delay</a>
+ <LI><a href="#[1]">send_command</a>
+ <LI><a href="#[3]">send_data</a>
+ <LI><a href="#[4]">init_lcd</a>
+ <LI><a href="#[5]">myApplication</a>
  <LI><a href="#[0]">myResetHandler</a>
 </UL>
 </UL>
@@ -26,7 +30,39 @@ Function Pointers
 <H3>
 Global Symbols
 </H3>
-<P><STRONG><a name="[1]"></a>myApplication</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, app.o(mySection3), UNUSED)
+<P><STRONG><a name="[2]"></a>delay</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, lcd.o(lcdSection), UNUSED)
+<BR><BR>[Called By]<UL><LI><a href="#[3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send_data
+<LI><a href="#[1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send_command
+<LI><a href="#[4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;init_lcd
+<LI><a href="#[5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;myApplication
+</UL>
+
+<P><STRONG><a name="[1]"></a>send_command</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, lcd.o(lcdSection), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay
+</UL>
+<BR>[Called By]<UL><LI><a href="#[4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;init_lcd
+<LI><a href="#[5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;myApplication
+</UL>
+
+<P><STRONG><a name="[3]"></a>send_data</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, lcd.o(lcdSection), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay
+</UL>
+<BR>[Called By]<UL><LI><a href="#[5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;myApplication
+</UL>
+
+<P><STRONG><a name="[4]"></a>init_lcd</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, lcd.o(lcdSection), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send_command
+<LI><a href="#[2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay
+</UL>
+<BR>[Called By]<UL><LI><a href="#[5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;myApplication
+</UL>
+
+<P><STRONG><a name="[5]"></a>myApplication</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, app.o(mySection3), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send_data
+<LI><a href="#[1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send_command
+<LI><a href="#[4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;init_lcd
+<LI><a href="#[2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay
+</UL>
 <P>
 <H3>
 Local Symbols
